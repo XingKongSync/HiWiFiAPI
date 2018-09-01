@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiWiFiAPI", "HiWiFiAPI\HiWi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APITest", "APITest\APITest.csproj", "{98786E72-A703-4B9D-A030-F664043B41BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSpeedDemo", "NetSpeedDemo\NetSpeedDemo.csproj", "{BA08393D-5872-4143-8309-2B58A8179B3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{98786E72-A703-4B9D-A030-F664043B41BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98786E72-A703-4B9D-A030-F664043B41BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98786E72-A703-4B9D-A030-F664043B41BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA08393D-5872-4143-8309-2B58A8179B3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA08393D-5872-4143-8309-2B58A8179B3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA08393D-5872-4143-8309-2B58A8179B3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA08393D-5872-4143-8309-2B58A8179B3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

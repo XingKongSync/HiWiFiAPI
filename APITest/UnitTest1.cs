@@ -12,8 +12,8 @@ namespace APITest
     {
         LoginInfoEx loginInfo = new LoginInfoEx()
         {
-            Cookies = new CookieCollection() { new Cookie() { Name = "sysauth", Value = "c1a4007a5e92feb5d1fb799becc66118", Domain = "192.168.199.1" } },
-            Info = new LoginInfo() { stok = "/;stok=6886d4c48ab0d187d67ea2ae793b968d" }
+            Cookies = new CookieCollection() { new Cookie() { Name = "sysauth", Value = "5d2e37e377d398cf2865531084e4a31a", Domain = "192.168.199.1" } },
+            Info = new LoginInfo() { stok = "/;stok=042852cd98f0199b96b5f08ad02e8096" }
         };
 
         string host = "192.168.199.1";
@@ -36,6 +36,12 @@ namespace APITest
         {
             var devList = HiWiFiAPI.HiWiFiApi.GetDeviceStatus(host, loginInfo);
             Debug.WriteLine(devList);
+        }
+
+        [TestMethod]
+        public void TestGetNetSpeed()
+        {
+            var devList = HiWiFiAPI.HiWiFiApi.GetDeviceNetSpeed(host, loginInfo);
         }
     }
 }
