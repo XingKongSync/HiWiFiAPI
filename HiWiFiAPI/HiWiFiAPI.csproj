@@ -47,15 +47,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\CommonEntity.cs" />
     <Compile Include="Entity\LoginInfo.cs" />
-    <Compile Include="HiWiFiAPI.cs" />
+    <Compile Include="HiWiFiApi.cs" />
+    <Compile Include="HiWiFiApiException.cs" />
+    <Compile Include="HiWiFiService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="XingKongUtils.dll" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <Content Include="XingKongUtils.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
