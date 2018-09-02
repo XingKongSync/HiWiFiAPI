@@ -28,6 +28,11 @@ namespace NetSpeedDemo
                 return;
             }
 
+            PrintSummary(service.DeviceMap.Values);
+            Console.WriteLine();
+            Console.WriteLine("Press any key to show net speed...");
+            Console.ReadKey();
+
             while (true)
             {
                 try
@@ -44,7 +49,7 @@ namespace NetSpeedDemo
                         }
                     }
 
-                    Print(service.DeviceMap.Values);
+                    PrintNetSpeed(service.DeviceMap.Values);
                 }
                 catch (HiWiFiApiAccessDeniedException)
                 {
@@ -62,6 +67,36 @@ namespace NetSpeedDemo
             }
         }
 
+        static string GetGoodDevName(DeviceInfo dev)
+        {
+            return string.IsNullOrWhiteSpace(dev.name) ? $"{dev.ip} {dev.mac}" : dev.name;
+        }
+
+        static string FormatTime(DateTime time)
+        {
+            return time.ToString("dd HH:mm:ss");
+        }
+
+        static void PrintSummary(IEnumerable<DeviceInfoEx> devExList)
+        {
+            Console.Clear();
+            foreach (var devEx in devExList)
+            {
+                string devName = GetGoodDevName(devEx.Info);
+                if (devName.Length > _padRight) _padRight = devEx.Info.name.Length;
+            }
+
+            foreach (var devEx in devExList)
+            {
+                string devName = GetGoodDevName(devEx.Info);
+                string nowStatus = devEx.Info.online == 1 ? "Online " : "Offline";
+                string lastOffline = FormatTime(TimestampHelper.GetTime(devEx.Info.last_offline));
+                string lastOnline = FormatTime(TimestampHelper.GetTime(devEx.Info.last_online));
+                Console.WriteLine($"Device: {devName.PadRight(_padRight)}\t {nowStatus} lastOffline: {lastOffline}\t lastOnline: {lastOnline}");
+            }
+        }
+
+        #region PrintNetSpeed
         private static ConsoleColor _defaultColor = ConsoleColor.Gray;
         private static ConsoleColor _messageColor = ConsoleColor.Gray;
         private static string _mesasge = "Nothing Happenend.";
@@ -82,9 +117,9 @@ namespace NetSpeedDemo
             _messageDelayCount = 10;
         }
 
-        private static int _padLeft = 5;
+        private static int _padRight = 5;
 
-        static void Print(IEnumerable<DeviceInfoEx> devExList)
+        static void PrintNetSpeed(IEnumerable<DeviceInfoEx> devExList)
         {
             Console.Clear();
             //输出局域网整体速度
@@ -103,14 +138,16 @@ namespace NetSpeedDemo
             {
                 var devEx = devExList.ElementAt(i);
 
-                string devName = string.IsNullOrWhiteSpace(devEx.Info.name) ? "<Unkown>" : devEx.Info.name;
+                string devName = GetGoodDevName(devEx.Info);
                 string txSpeed = (int)(devEx.UploadSpeed / 8000f) + "KB/S";
                 string rxSpeed = (int)(devEx.DownloadSpeed / 8000f) + "KB/S";
 
-                if (devName.Length > _padLeft) _padLeft = devEx.Info.name.Length;
+                if (devName.Length > _padRight) _padRight = devEx.Info.name.Length;
 
-                Console.WriteLine($"Device: {devName.PadRight(_padLeft)}\t mac: {devEx.Info.mac}\t up: {txSpeed.PadLeft(5)}\t down: {rxSpeed.PadLeft(5)}");
+                Console.WriteLine($"Device: {devName.PadRight(_padRight)}\t mac: {devEx.Info.mac}\t up: {txSpeed.PadLeft(5)}\t down: {rxSpeed.PadLeft(5)}");
             }
         }
+        #endregion
+
     }
 }
