@@ -109,7 +109,7 @@ namespace NetSpeedDemo
 
                 if (devName.Length > _padLeft) _padLeft = devEx.Info.name.Length;
 
-                Console.WriteLine($"Device: {devName.PadRight(_padLeft)}\t up: {txSpeed.PadLeft(5)}\t down: {rxSpeed.PadLeft(5)}");
+                Console.WriteLine($"Device: {devName.PadRight(_padLeft)}\t mac: {devEx.Info.mac}\t up: {txSpeed.PadLeft(5)}\t down: {rxSpeed.PadLeft(5)}");
             }
         }
     }
